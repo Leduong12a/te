@@ -15,7 +15,7 @@ export async function POST(req: NextRequest) {
 
   const { html: rawHtml, filename = "document.pdf", baseUrl } = body;
   // Inject <base> tag so Puppeteer can resolve relative URLs (images, fonts...)
-  const html = baseUrl
+  let html = baseUrl
     ? rawHtml?.replace(/<head>/i, `<head><base href="${baseUrl}">`)
     : rawHtml;
   if (!html || !rawHtml) {
